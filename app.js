@@ -9,18 +9,18 @@
 
 // UI Class: Handle UI Tasks
 
-class UT {
+class UI {
   static displayBooks() {
     const StoredBooks = [
       {
         title: 'BOOK ONE',
         author: 'Lily Gomes',
-        isbn: '465768'
+        isbn: '9898989'
       },
       {
         title: 'BOOK TWO',
-        author: 'Preti Zinta',
-        isbn: '4644448'
+        author: 'Prety Zinta',
+        isbn: '454000'
       }
     ];
 
@@ -46,12 +46,14 @@ class UT {
      `;
 
      list.appendChild(row);
-     
+
   }
 }
 // Store Class: Handles Storage
 
 // Event: Display BOOKS
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 // Event: Add a BOOKS
 
