@@ -84,19 +84,31 @@ e.preventDefault();
 
   const isbn = document.querySelector('#isbn').value;
 
-// Instatiate books
+  //  Validate :
 
-const book = new Book(title, author, isbn);
+  if(title === '' || author === '' || isbn === '') {
+    alert('Please fill all the blank fields');
+  }
 
- // console.log(book)
+  else {
 
- // Add Book to UI :
+    // Instatiate books
 
- UI.addBookToList(book);
+    const book = new Book(title, author, isbn);
 
-// Clear Fields ;
+     // console.log(book)
 
-UI.clearFields();
+     // Add Book to UI :
+
+     UI.addBookToList(book);
+
+    // Clear Fields ;
+
+    UI.clearFields();
+
+  }
+
+
 
 });
 
