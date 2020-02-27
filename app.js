@@ -48,6 +48,13 @@ class UI {
      list.appendChild(row);
 
   }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#isbn').value = '';
+
+  }
 }
 // Store Class: Handles Storage
 
@@ -80,6 +87,11 @@ const book = new Book(title, author, isbn);
  // Add Book to UI :
 
  UI.addBookToList(book);
+
+// Clear Fields ;
+
+UI.clearFields();
+
 });
 
 // Event : Remove a BOOKS
