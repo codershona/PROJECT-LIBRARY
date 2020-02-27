@@ -14,5 +14,6 @@
    - raw.githack.com uses for project link created ;
    - linting : Stickler uses;
    - book add, remove and store(add and remove) method created;
-   - https://raw.githack.com/ it helps to make html link.
+   - https://raw.githack.com/ it helps to make html link(but you need to make public your repo to get the link).
+   
 ```
