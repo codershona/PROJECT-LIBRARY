@@ -11,20 +11,21 @@
 
 class UI {
   static displayBooks() {
-    const StoredBooks = [
-      {
-        title: 'BOOK ONE',
-        author: 'Lily Gomes',
-        isbn: '9898989'
-      },
-      {
-        title: 'BOOK TWO',
-        author: 'Prety Zinta',
-        isbn: '454000'
-      }
-    ];
+    // const StoredBooks = [
+    //   {
+    //     title: 'BOOK ONE',
+    //     author: 'Lily Gomes',
+    //     isbn: '9898989'
+    //   },
+    //   {
+    //     title: 'BOOK TWO',
+    //     author: 'Prety Zinta',
+    //     isbn: '454000'
+    //   }
+    //  ];
 
-    const books = StoredBooks;
+    // const books = StoredBooks;
+    const books = Store.getBooks();
 
     books.forEach((book) => UI.addBookToList(book));
 
@@ -76,6 +77,41 @@ class UI {
 }
 // Store Class: Handles Storage
 
+class Store {
+  static getBooks() {
+      let books;
+      if(localStorage.getItem('books') === null) {
+        books = [];
+
+      } else {
+        books = JSON.parse(localStorage.getItem('books'));
+      }
+
+
+      return books;
+  }
+
+  static addBook(book) {
+      const books = Store.getBooks();
+books.push(book);
+localStorage.setItem('books', JSON.stringify(books));
+  }
+
+
+
+  static removeBook(isbn) {
+     const books = Store.getBooks();
+
+     books.forEach((book, index) => {
+       if(book.isbn === isbn) {
+       books.splice(index, 1);
+       }
+     });
+
+     localStorage.setItem('books', JSON.stringify(books));
+  }
+}
+
 // Event: Display BOOKS
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
@@ -115,6 +151,12 @@ else {
 
      UI.addBookToList(book);
 
+     // Add book to store:
+    Store.addBook(book);
+     // Show success message
+
+     UI.showAlert('Book Added', 'success');
+
     // Clear Fields ;
 
     UI.clearFields();
@@ -127,6 +169,15 @@ else {
 document.querySelector('#book-list').addEventListener('click', (e) => {
 
   // console.log(e.target)
+  // Remove book from UI
   UI.deleteBook(e.target)
+
+  // Remove book fro store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+
+
+  // Show success message
+
+  UI.showAlert('Book Removed', 'success');
 
 });
